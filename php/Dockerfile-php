@@ -1,0 +1,26 @@
+# это моя заготовка, здесь есть лишние элементы, не обращайте внимания
+FROM php:8.4-fpm
+# bz2 calendar ctype filter ftp gettext hash iconv imap libxml pcre phar posix readline reflection session simplexml sockets spl standard tokenizer xml xmlreader xmlrpc xmlwriter xsl zip zlib
+
+RUN apt-get update && apt-get install -y \
+    mc \
+    openssl \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libzip-dev \
+    zip  \
+    unzip \
+    curl \
+    libonig-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd zip mbstring
+
+RUN apt-get update && apt-get install -y autoconf pkg-config gcc make \
+    && pecl install xdebug
+
+WORKDIR /var/www
+
+EXPOSE 9000
+
+CMD ["php-fpm"]

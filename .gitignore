@@ -1,0 +1,58 @@
+# OS-specific
+.DS_Store
+Thumbs.db
+.git/
+
+# IDE/editor
+.idea/
+.vscode/
+*.code-workspace
+*~
+*.swp
+*.swo
+
+# Composer
+/vendor/
+/composer.phar
+
+# PHP tooling and caches
+.phpunit.result.cache
+.php-cs-fixer.cache
+*.cache
+/coverage/
+
+# Logs
+*.log
+logs/
+storage/logs/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.envrc
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# SSL keys and certificates
+*.key
+*.crt
+*.pem
+*.p12
+
+# Database dumps
+*.sql
+*.sql.gz
+*.dump
+
+# Node (if frontend appears)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnpm-store/
+
+# Project-specific
+.qodo/
+nginx/ssl/
