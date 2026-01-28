@@ -2,6 +2,7 @@
 // error_reporting(E_ALL);
 // ini_set('display_errors', 1);
 
+// разумеется это должно быть вынесено например в .env
 $dbHost = 'postgres';
 $dbPort = 5432;
 $dbName = 'appdb';
