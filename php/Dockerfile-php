@@ -1,23 +1,26 @@
-# это моя заготовка, здесь есть лишние элементы, не обращайте внимания
-FROM php:8.4-fpm
-# bz2 calendar ctype filter ftp gettext hash iconv imap libxml pcre phar posix readline reflection session simplexml sockets spl standard tokenizer xml xmlreader xmlrpc xmlwriter xsl zip zlib
+# это моя заготовка, здесь не все в лучшем виде, не обращайте внимания
+FROM php:8.3-fpm
 
 RUN apt-get update && apt-get install -y \
-    mc \
-    openssl \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
+    libpq-dev \
     libzip-dev \
-    zip  \
-    unzip \
-    curl \
+    libpng-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
     libonig-dev \
+    unzip \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd zip mbstring
-
-RUN apt-get update && apt-get install -y autoconf pkg-config gcc make \
-    && pecl install xdebug
+    && docker-php-ext-install -j$(nproc) \
+        pdo \
+        pdo_pgsql \
+        pdo_mysql \
+        mbstring \
+        zip \
+        exif \
+        pcntl \
+        bcmath \
+        gd \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www
 
